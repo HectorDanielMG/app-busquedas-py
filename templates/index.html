@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÚSQUEDAS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>BÚSQUEDAS</h1>
+    <h2>Costo Uniforme</h2>
+    <form action="/buscar_BCU" method="POST">
+        <label for="estado_inicial">Estado inicial:</label>
+        <input type="text" id="estado_inicial" name="estado_inicial">
+        <br>
+        <label for="solucion">Solución:</label>
+        <input type="text" id="solucion" name="solucion">
+        <br>
+        <button type="submit">Buscar</button>
+    </form>
+    {% if resultado_BCU %}
+        <h3>Resultado:</h3>
+        <p>{{ resultado_BCU }}</p>
+        <p>Costo: {{ costo_BCU }} KM</p>
+    {% endif %}
+
+    <h2>Dijkstra</h2>
+    <form action="/buscar_dijkstra" method="POST">
+        <!-- Aquí podrías agregar campos para ingresar los datos necesarios para la búsqueda con Dijkstra -->
+        <button type="submit">Buscar</button>
+    </form>
+    {% if resultado_dijkstra %}
+        <h3>Resultado:</h3>
+        <p>{{ resultado_dijkstra }}</p>
+    {% endif %}
+</body>
+</html>
