@@ -1,8 +1,18 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 from BCU.BCU import buscar_solucion_UCS as BCU_buscar_solucion
 from Dijkstra.Dijkstra import dijkstra as dijkstra_buscar_solucion
 from BCU.BCU import conexiones
 
+# Define el grafo aquí o importa el archivo que lo contiene
+grafo = {
+    '1': {'2': 3, '3': 6},
+    '2': {'3': 2, '4': 1},
+    '3': {'4': 4, '5': 2},
+    '4': {'3': 4, '5': 6},
+    '5': {'6': 2, '7': 2},
+    '6': {'7': 3},
+    '7': {}
+}
 
 app = Flask(__name__)
 
@@ -29,10 +39,15 @@ def buscar_BCU():
 
 @app.route('/buscar_dijkstra', methods=['POST'])
 def buscar_dijkstra():
-    # Aquí puedes implementar la lógica para buscar con Dijkstra
-    # Por ahora, solo devuelve un resultado de ejemplo
-    resultado_dijkstra = "Camino más corto desde el nodo 1 hasta el nodo 7: ['1', '2', '3', '5', '7']"
-    return render_template('index.html', resultado_dijkstra=resultado_dijkstra)
+    salida = '1'
+    nodo_destino = '7'
+    previos = dijkstra_buscar_solucion(grafo, salida)
+    camino = []
+    nodo = nodo_destino
+    while nodo is not None:
+        camino.insert(0, nodo)
+        nodo = previos[nodo]
+    return render_template('index.html', resultado_dijkstra=camino)
 
 if __name__ == '__main__':
     app.run(debug=True)
