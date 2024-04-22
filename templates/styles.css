@@ -1,7 +1,8 @@
 /* styles.css */
-
 body {
-    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Color de fondo claro */
+    color: #333; /* Color de texto oscuro */
+    font-family: Arial, sans-serif; /* Fuente del texto */
     margin: 0;
     padding: 0;
 }
