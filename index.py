@@ -39,9 +39,9 @@ def buscar_BCU():
 
 @app.route('/buscar_dijkstra', methods=['POST'])
 def buscar_dijkstra():
-    salida = '1'
-    nodo_destino = '7'
-    previos = dijkstra_buscar_solucion(grafo, salida)
+    salida = request.form['salida']
+    nodo_destino = request.form['nodo_destino']
+    previos = dijkstra_buscar_solucion(grafo, salida, nodo_destino)
     camino = []
     nodo = nodo_destino
     while nodo is not None:

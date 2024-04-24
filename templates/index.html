@@ -4,98 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BÚSQUEDAS</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-
 </head>
 <body>
-    <h1 id="titulo">BÚSQUEDAS</h1>
-    <h2 id="mensaje">Sigue Deslizando ⬇⬇⬇</h2>
-    
-    <h2>Costo Uniforme</h2>
-    <ul>
-        <li>EDO.MEX - SLP: 513 KM</li>
-        <li>EDO.MEX - CDMX: 125 KM</li>
-        <li>PUEBLA - SLP: 514 KM</li>
-        <li>CDMX - MICHOACAN: 491 KM</li>
-        <li>CDMX - SLP: 423 KM</li>
-        <li>CDMX - EDO.MEX: 125 KM</li>
-        <li>MICHOACAN - SONORA: 346 KM</li>
-        <li>MICHOACAN - SLP: 355 KM</li>
-        <li>MICHOACAN - MONTERREY: 309 KM</li>
-        <li>MICHOACAN - CDMX: 491 KM</li>
-        <li>SLP - QRO: 203 KM</li>
-        <li>SLP - PUEBLA: 514 KM</li>
-        <li>SLP - EDO.MEX: 513 KM</li>
-        <li>SLP - SONORA: 603 KM</li>
-        <li>SLP - GUADALAJARA: 437 KM</li>
-        <li>SLP - CDMX: 423 KM</li>
-        <li>SLP - MICHOACAN: 355 KM</li>
-        <li>SLP - MONTERREY: 313 KM</li>
-        <li>SLP - HIDALGO: 599 KM</li>
-        <li>QRO - SLP: 203 KM</li>
-        <li>QRO - HIDALGO: 390 KM</li>
-        <li>HIDALGO - QRO: 390 KM</li>
-        <li>HIDALGO - SLP: 599 KM</li>
-        <li>MONTERREY - SLP: 313 KM</li>
-        <li>MONTERREY - SONORA: 296 KM</li>
-        <li>MONTERREY - GUADALAJARA: 394 KM</li>
-        <li>MONTERREY - MICHOACAN: 309 KM</li>
-        <li>SONORA - MONTERREY: 296 KM</li>
-        <li>SONORA - SLP: 603 KM</li>
-        <li>SONORA - MICHOACAN: 346 KM</li>
-        <li>GUADALAJARA - MONTERREY: 394 KM</li>
-        <li>GUADALAJARA - SLP: 437 KM</li>
-    </ul>
-    <form action="/buscar_BCU" method="POST">
-        <label for="estado_inicial">Estado inicial:</label>
-        <input type="text" id="estado_inicial" name="estado_inicial">
-        <br>
-        <label for="solucion">Solución:</label>
-        <input type="text" id="solucion" name="solucion">
-        <br>
-        <button type="submit">Buscar</button>
-        <label for="estado_inicial">
-        </label>
-        <label for="estado_inicial">Nota: Ingresar los nombres de las
-            ciudades como aparecen en la parte superior
-        </label>
-    </form>
-    {% if resultado_BCU %}
-        <h3>Resultado:</h3>
-        <p>{{ resultado_BCU }}</p>
-        <p>Costo: {{ costo_BCU }} KM</p>
-    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 id="titulo" class="mt-5">BÚSQUEDAS</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Costo Uniforme</h2>
+                <div id="ciudades" style="display:none;">
+                    <div class="row">
+                        <div class="col">
+                            <h2 id="mensaje" class="mt-3">Sigue Deslizando ⬇⬇⬇</h2>
+                        </div>
+                    </div>
+                    
+                    <ul>
+                        <li>EDO.MEX - SLP: 513 KM</li>
+                        <li>EDO.MEX - CDMX: 125 KM</li>
+                        <li>PUEBLA - SLP: 514 KM</li>
+                        <li>CDMX - MICHOACAN: 491 KM</li>
+                        <li>CDMX - SLP: 423 KM</li>
+                        <li>CDMX - EDO.MEX: 125 KM</li>
+                        <li>MICHOACAN - SONORA: 346 KM</li>
+                        <li>MICHOACAN - SLP: 355 KM</li>
+                        <li>MICHOACAN - MONTERREY: 309 KM</li>
+                        <li>MICHOACAN - CDMX: 491 KM</li>
+                        <li>SLP - QRO: 203 KM</li>
+                        <li>SLP - PUEBLA: 514 KM</li>
+                        <li>SLP - EDO.MEX: 513 KM</li>
+                        <li>SLP - SONORA: 603 KM</li>
+                        <li>SLP - GUADALAJARA: 437 KM</li>
+                        <li>SLP - CDMX: 423 KM</li>
+                        <li>SLP - MICHOACAN: 355 KM</li>
+                        <li>SLP - MONTERREY: 313 KM</li>
+                        <li>SLP - HIDALGO: 599 KM</li>
+                        <li>QRO - SLP: 203 KM</li>
+                        <li>QRO - HIDALGO: 390 KM</li>
+                        <li>HIDALGO - QRO: 390 KM</li>
+                        <li>HIDALGO - SLP: 599 KM</li>
+                        <li>MONTERREY - SLP: 313 KM</li>
+                        <li>MONTERREY - SONORA: 296 KM</li>
+                        <li>MONTERREY - GUADALAJARA: 394 KM</li>
+                        <li>MONTERREY - MICHOACAN: 309 KM</li>
+                        <li>SONORA - MONTERREY: 296 KM</li>
+                        <li>SONORA - SLP: 603 KM</li>
+                        <li>SONORA - MICHOACAN: 346 KM</li>
+                        <li>GUADALAJARA - MONTERREY: 394 KM</li>
+                        <li>GUADALAJARA - SLP: 437 KM</li>
+                    </ul>
+                </div>
+                <button id="mostrarCiudades" class="btn btn-primary mt-3">Presiona aquí para ver las ciudades y sus distancias</button>
+                
+                <form action="/buscar_BCU" method="POST" class="mt-3">
+                    <div class="form-group">
+                        <label for="estado_inicial">Estado inicial:</label>
+                        <input type="text" class="form-control" id="estado_inicial" name="estado_inicial">
+                    </div>
+                    <div class="form-group">
+                        <label for="solucion">Solución:</label>
+                        <input type="text" class="form-control" id="solucion" name="solucion">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <label for="estado_inicial">Nota: Ingresar los nombres de las ciudades como aparecen en la parte superior</label>
+                    <label for="estado_inicial"> </label>
+                    <label for="estado_inicial">Ejemplo: EDO.MEX -> HIDALGO</label>
+                </form>
+                
+                {% if resultado_BCU %}
+                    <h3>Resultado:</h3>
+                    <p>{{ resultado_BCU }}</p>
+                    <p>Costo: {{ costo_BCU }} KM</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2>Dijkstra</h2>
+                <button id="mostrarGrafo" class="btn btn-primary mt-3">Presiona aquí para mostrar el Grafo</button>
+                <div id="contenedorGrafo" style="display: none;">
+                    <h2>Grafo</h2>
+                    <ul id="grafo">
+                        <li>1: {'2': 3, '3': 6}</li>
+                        <li>2: {'3': 2, '4': 1}</li>
+                        <li>3: {'4': 4, '5': 2}</li>
+                        <li>4: {'3': 4, '5': 6}</li>
+                        <li>5: {'6': 2, '7': 2}</li>
+                        <li>6: {'7': 3}</li>
+                        <li>7: {}</li>
+                    </ul>
+                </div>
+                
+                <form action="/buscar_dijkstra" method="POST" class="mt-3">
+                    <div class="form-group">
+                        <label for="salida">Salida:</label>
+                        <input type="text" class="form-control" id="salida" name="salida">
+                    </div>
+                    <div class="form-group">
+                        <label for="nodo_destino">Nodo destino:</label>
+                        <input type="text" class="form-control" id="nodo_destino" name="nodo_destino">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
 
-    <h2>Dijkstra</h2>
-    <h3>Grafo:</h3>
-    <ul>
-        <li>1: {'2': 3, '3': 6}</li>
-        <li>2: {'3': 2, '4': 1}</li>
-        <li>3: {'4': 4, '5': 2}</li>
-        <li>4: {'3': 4, '5': 6}</li>
-        <li>5: {'6': 2, '7': 2}</li>
-        <li>6: {'7': 3}</li>
-        <li>7: {}</li>
-    </ul>
-    <form action="/buscar_dijkstra" method="POST">
-        <!-- Aquí podrías agregar campos para ingresar los datos necesarios para la búsqueda con Dijkstra -->
-        <button type="submit">Buscar</button>
-    </form>
-    {% if resultado_dijkstra %}
-        <h3>Resultado:</h3>
-        <p>{{ resultado_dijkstra }}</p>
-    {% endif %}
-
+                    <label for="estado_inicial">Nota: Ingresar el nuemro de Nodos para realizar la busqueda</label>
+                    <label for="estado_inicial"> </label>
+                    <label for="estado_inicial">Ejemplo: 1 -> 7</label>
+                </form>
+                
+                {% if resultado_dijkstra %}
+                    <h3>Resultado:</h3>
+                    <p>{{ resultado_dijkstra }}</p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
     <script>
+        document.getElementById("mostrarCiudades").addEventListener("click", function() {
+            var ciudades = document.getElementById("ciudades");
+            ciudades.style.display = "block";
+            var mensaje = document.getElementById('mensaje');
+            mensaje.style.color = obtenerColorAleatorio();
+        });
+
         setInterval(cambiarColor, 1000);
-    
+
         function cambiarColor() {
-            var colores = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff']; // Lista de colores
-            var indice = Math.floor(Math.random() * colores.length); // Seleccionar un color aleatorio
-            var mensaje = document.getElementById('mensaje'); // Obtener el elemento <h2>
-            mensaje.style.color = colores[indice]; // Asignar el color seleccionado al texto del <h2>
+            var mensaje = document.getElementById('mensaje');
+            mensaje.style.color = obtenerColorAleatorio();
         }
+
+        function obtenerColorAleatorio() {
+            var colores = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff'];
+            var indice = Math.floor(Math.random() * colores.length);
+            return colores[indice];
+        }
+
+        document.getElementById("mostrarGrafo").addEventListener("click", function() {
+            var contenedorGrafo = document.getElementById("contenedorGrafo");
+            contenedorGrafo.style.display = "block";
+        });
     </script>
-    
 </body>
 </html>
