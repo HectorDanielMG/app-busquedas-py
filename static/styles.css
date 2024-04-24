@@ -1,7 +1,7 @@
 /* styles.css */
 body {
-    background-color: #f0f0f0; /* Color de fondo claro */
-    color: #333; /* Color de texto oscuro */
+    background-color: #334257; /* Color de fondo azul oscuro */
+    color: #ffffff; /* Color de texto blanco */
     font-family: Arial, sans-serif; /* Fuente del texto */
     margin: 0;
     padding: 0;
@@ -14,8 +14,13 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #92afd7; /* Color de título azul claro */
 }
+
+h1, h2 {
+    text-align: center;
+}
+
 
 form {
     margin-bottom: 20px;
@@ -34,12 +39,12 @@ input[type="text"] {
 
 button {
     padding: 8px 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #92afd7; /* Color de fondo del botón azul claro */
+    color: #334257; /* Color de texto del botón azul oscuro */
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #6b8ea9; /* Color de fondo del botón al pasar sobre él */
 }

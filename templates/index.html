@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BÚSQUEDAS</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
-    <h1>BÚSQUEDAS</h1>
+    <h1 id="titulo">BÚSQUEDAS</h1>
+    <h2 id="mensaje">Sigue Deslizando ⬇⬇⬇</h2>
+    
     <h2>Costo Uniforme</h2>
     <ul>
         <li>EDO.MEX - SLP: 513 KM</li>
@@ -51,6 +54,11 @@
         <input type="text" id="solucion" name="solucion">
         <br>
         <button type="submit">Buscar</button>
+        <label for="estado_inicial">
+        </label>
+        <label for="estado_inicial">Nota: Ingresar los nombres de las
+            ciudades como aparecen en la parte superior
+        </label>
     </form>
     {% if resultado_BCU %}
         <h3>Resultado:</h3>
@@ -77,5 +85,17 @@
         <h3>Resultado:</h3>
         <p>{{ resultado_dijkstra }}</p>
     {% endif %}
+
+    <script>
+        setInterval(cambiarColor, 1000);
+    
+        function cambiarColor() {
+            var colores = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff']; // Lista de colores
+            var indice = Math.floor(Math.random() * colores.length); // Seleccionar un color aleatorio
+            var mensaje = document.getElementById('mensaje'); // Obtener el elemento <h2>
+            mensaje.style.color = colores[indice]; // Asignar el color seleccionado al texto del <h2>
+        }
+    </script>
+    
 </body>
 </html>
